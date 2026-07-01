@@ -32,28 +32,23 @@ Forslagene er rangert etter **samlet nytteverdi** vektet mot **risiko for å for
 
 ---
 
-### 🔴 P1 — Fjern CDN-avhengighet for Lunr.js
+### ✅ P1 — Fjern CDN-avhengighet for Lunr.js
 
 **Kategori:** Pålitelighet / Langsiktig bevaring  
-**Innsats:** Lav (< 1 time)
+**Innsats:** Lav (< 1 time)  
+**Status:** Gjennomført 1. juli 2026
 
 **Problem:**  
-Søkefunksjonen (`search.js`) laster Lunr.js fra en ekstern CDN:
+Tidligere ble søkefunksjonen (`search.js`) avhengig av et eksternt CDN for Lunr.js, noe som gjorde løsningen sårbar ved utilgjengelighet, endrede URL-er eller opphør av tredjeparter.
+
+**Gjennomført:**  
+Vi har lastet ned Lunr.js versjon 2.3.9 og bruker denne lokalt fra `/js/lunr.js`. Sider som bruker søkefunksjonen refererer nå til den lokale filen, slik at nettstedet ikke lenger er avhengig av `unpkg.com` for denne delen av funksjonaliteten.
 
 ```html
-<script src="https://unpkg.com/lunr/lunr.js"></script>
+<script src="/js/lunr.js"></script>
 ```
 
-Dette betyr at søkefunksjonen slutter å virke dersom `unpkg.com` er utilgjengelig, endrer URL-struktur, eller opphører. For et langsiktig arkiv er ekstern avhengighet en risiko.
-
-**Løsning:**  
-Last ned en spesifikk versjon av `lunr.min.js` og legg den i `/js/`-mappen. Oppdater alle script-referanser til å peke lokalt:
-
-```html
-<script src="/js/lunr.min.js"></script>
-```
-
-**Gevinst:** Nettstedet fungerer fullstendig offline/airgapped og er ikke avhengig av tredjeparter.
+**Gevinst:** Nettstedet fungerer fullstendig offline/airgapped for denne delen av søkefunksjonen og er ikke lenger avhengig av eksterne CDN-tjenester.
 
 ---
 
@@ -396,7 +391,7 @@ Bruk en statisk site-generator (f.eks. **Eleventy/11ty**, Hugo eller Jekyll) med
 
 | Prioritet | ID | Tiltak | Kategori | Innsats |
 |-----------|-----|--------|----------|---------|
-| 🔴 Kritisk | P1 | Fjern CDN-avhengighet for Lunr.js | Pålitelighet | Lav |
+| ✅ Gjennomført | P1 | Fjern CDN-avhengighet for Lunr.js | Pålitelighet | Lav |
 | 🔴 Kritisk | P2 | Fjern debug `console.log` | Kodekvalitet | Svært lav |
 | 🔴 Kritisk | P3 | Legg til Content Security Policy | Sikkerhet | Lav |
 | 🟠 Høy | P4 | Sanitering av søkeresultater mot XSS | Sikkerhet | Lav–middels |
