@@ -391,7 +391,7 @@ Bruk en statisk site-generator (f.eks. **Eleventy/11ty**, Hugo eller Jekyll) med
 | ✅ Gjennomført | P6 | Generer `sitemap.xml` og `robots.txt` | Bevaring/SEO | Lav |
 | 🟠 Høy | P7 | Strukturer søkeindeks som byggeprosess | Vedlikehold | Middels |
 | 🟡 Middels | P8 | Legg til `<meta name="viewport">` | Tilgjengelighet | Lav |
-| 🟡 Middels | P9 | SRI-sjekk på CDN-script | Sikkerhet | Lav |
+| ✅ Ferdig | P9 | Lokal Lunr 2.3.9 uten CDN-avhengighet | Sikkerhet | Lav |
 | 🟡 Middels | P10 | Rett `lang`-attributt til norsk | Tilgjengelighet | Lav |
 | 🟡 Middels | P11 | Open Graph-metadata | Synlighet | Lav–middels |
 | 🟡 Middels | P12 | Broken-link-sjekk i CI | Vedlikehold | Lav |
