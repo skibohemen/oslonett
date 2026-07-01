@@ -30,7 +30,7 @@
 | 1 | CW: `maphelp.html` mangler (sti-prefix-refs løst via symlink) | 3 787 *(var 11 361 — se §1.2)* | ~3 787 |
 | 2 | Manglende innholdskategorier | 208 | ~30 |
 | 3 | CGI-skript (ikke tilgjengelig på GitHub Pages) | 139 | ~20 |
-| 4 | Morgenbladet bakgrunnsbilde feil sti | 111 | 111 |
+| 4 | Morgenbladet bakgrunnsbilde feil sti | 111 *(nå rettet)* | 111 |
 | 5 | Rondo-interne mangler | 107 | ~50 |
 | 6 | Gammel serversti `/me/ts/` | 75 | ~50 |
 | 7 | EU-interne mangler | 61 | ~30 |
@@ -112,9 +112,11 @@ GitHub Pages støtter ikke server-side kode. Alle CGI-skript i nettstedet er uti
 
 ---
 
-### 1.5 Kategori 4 — Morgenbladet bakgrunnsbilde feil sti *(111 brutte refs)*
+### 1.5 Kategori 4 — Morgenbladet bakgrunnsbilde feil sti *(111 brutte refs; nå rettet)*
 
-Samtlige 111 Morgenbladet-artikler i `/historie/MB/utg/9524/` og `/historie/MB/utg/9525/` har denne feilen på linje 6:
+Status per 1. juli 2026: Denne feilen er nå rettet. I alt 111 Morgenbladet-filer i `/historie/MB/utg/9524/` og `/historie/MB/utg/9525/` er oppdatert fra den gamle stien `/me/ts/historie/MB/gifs/mb-bg.gif` til `/historie/MB/gifs/mb-bg.gif`.
+
+Originalfeilen var denne på linje 6:
 
 ```html
 <body background="/me/ts/historie/MB/gifs/mb-bg.gif">
@@ -122,7 +124,7 @@ Samtlige 111 Morgenbladet-artikler i `/historie/MB/utg/9524/` og `/historie/MB/u
 
 Stien `/me/ts/` var et prefiks på den gamle Schibsted Nett-serveren og eksisterer ikke her. Bildefilen `mb-bg.gif` finnes i `/historie/MB/gifs/mb-bg.gif`.
 
-**Enkel fiks:** Endre `/me/ts/historie/MB/gifs/mb-bg.gif` → `/historie/MB/gifs/mb-bg.gif` i alle 111 filer (automatiserbart med sed/skript).
+**Oppfølging:** Punktet er nå gjennomført, og den opprinnelige årsaken i auditrapporten er løst.
 
 ---
 
