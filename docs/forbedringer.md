@@ -221,25 +221,17 @@ Ingen av sidene har viewport-metatag. På mobil vises nettstedet svært lite og 
 
 ---
 
-### 🟡 P9 — Erstatt `unpkg.com`-avhengighet i Lunr med lokal kopi og integrity-sjekk
+### ✅ P9 — Erstatt `unpkg.com`-avhengighet i Lunr med lokal kopi og integrity-sjekk
 
 **Kategori:** Sikkerhet / Pålitelighet  
 **Innsats:** Lav  
-**Merk:** Delvis overlapp med P1 — dette er utdyping av sikkerhetsaspektet.
+**Status:** Ferdig / irrelevant som separat tiltak siden P1 nå er løst og Lunr brukes lokalt i versjon 2.3.9.
 
 **Problem:**  
-Dersom Lunr.js lastes fra CDN, bør Subresource Integrity (SRI) brukes for å verifisere at scriptet ikke er manipulert:
+Tidligere var dette et relevant sikkerhets- og pålitelighetsaspekt ved CDN-bruk, men med lokal kopi av Lunr er behovet for SRI på denne avhengigheten ikke lenger aktuelt som separat tiltak.
 
-```html
-<!-- Med SRI (midlertidig til lokal kopi er på plass): -->
-<script 
-  src="https://unpkg.com/lunr/lunr.js" 
-  integrity="sha384-[HASH]" 
-  crossorigin="anonymous">
-</script>
-```
-
-Best: flytt til lokal kopi (se P1).
+**Gjennomført:**  
+Vi bruker nå en lokal kopi av Lunr 2.3.9 fra `/js/lunr.js`, og det er dermed ikke lenger noen aktiv `unpkg.com`-avhengighet å beskytte mot.
 
 ---
 
