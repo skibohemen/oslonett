@@ -280,11 +280,11 @@ Disse er Server Side Include-filer som aldri ble bevart — de ble aldri synlig 
 | `historie/CW/utg/9431/` | 49 | CW-artikler ikke lenket |
 | *(mange flere CW-utgaver)* | ~2 000+ | CW-artikler ikke lenket |
 
-#### OL/meldinger — 1 129 ubrukte HTML-filer
+#### OL/meldinger — 1 129 HTML-filer i arkivet (ikke et reelt manglende ressursproblem)
 
-Mappen `historie/OL/meldinger/` inneholder 1 129 nummererte HTML-filer (fra `1.html` til `>600.html`). Dette er individuelle pressemeldinger og nyhetsoppdateringer fra OL '94 i Lillehammer. 
+Mappen `historie/OL/meldinger/` inneholder 1 129 nummererte HTML-filer (fra `1.html` til `>600.html`). Dette er individuelle pressemeldinger og nyhetsoppdateringer fra OL '94 i Lillehammer.
 
-**Årsak til at de er ubrukte:** De ble opprinnelig vist via et CGI-basert meldingslister-skript som genererte en indeks dynamisk. Ingen statisk `index.html` lenker til de individuelle meldingsfilene. Filene er komplett bevart, men utilgjengelige for brukere som ikke kjenner URL-mønsteret direkte.
+**Årsak til at de ble klassifisert som «ubrukte» av skriptet:** De ble opprinnelig presentert via eksisterende indeks-sider, og i dag er meldingene faktisk tilgjengelige via `historie/OL/meldinger.html` og `historie/OL/meldinger-old.html`. Det betyr at dette ikke er en reell mangel i det publiserte arkivet. Skriptet markerte dem som ubrukte fordi det ikke finnes en enkelt ny statisk `index.html` som samler alle filene på én side.
 
 #### CW-artikler — ~3 800+ ubrukte HTML-filer
 
@@ -361,7 +361,7 @@ ComputerWorld-artiklene er lagret i `historie/CW/utg/YYUU/` (år+uke-format, f.e
 | A | ~~Feil sti-prefix på CW-filer (`/CW/` → `/historie/CW/`)~~ | ~~3 787 CW-artikler~~ | ✅ **Allerede løst** — git-symlink `CW → historie/CW` finnes på `main` | Fikser 7 574 refs (allerede gjort) |
 | B | `maphelp.html` eksisterer ikke | 3 787 CW-artikler | Middels (gjenopprette fil) | Fikser 3 787 brutte refs |
 | C | Morgenbladet bakgrunnsbilde feil sti | 111 MB-filer | Lav (skript-søk/erstatning) | Fikser 111 brutte refs |
-| D | OL/meldinger-filer ikke lenket | 1 129 HTML-filer | Middels (statisk indeks) | Gjør 1 129 filer tilgjengelige |
+| D | OL/meldinger er allerede tilgjengelige via eksisterende indekssider | 1 129 HTML-filer | ✅ Ingen nødvendig fix | Unngår en falsk positiv i audit-en |
 | E | SSI-komponenter mangler | 4 jubileumssider | Middels (inline innhold) | Fikser 12 brutte refs |
 
 ### 3.2 Naturlig ufikserbare mangler (aksepterte brudd)
@@ -380,7 +380,7 @@ Disse er forventet og akseptert som konsekvens av at arkivet er bevart fra en an
 
 | Gruppe | Anbefaling |
 |--------|-----------|
-| OL/meldinger (1 129 HTML) | Lag en statisk indeks-side som lenker til alle meldingene |
+| OL/meldinger (1 129 HTML) | Ikke nødvendig å rette; meldingene er allerede tilgjengelige via eksisterende indekssider. Eventuell ekstra indeks kan vurderes som valgfri arkivforbedring, ikke som en reell mangel. |
 | CW-artikler (~3 800+ HTML) | Fixes indirekte ved å fikse sti-problemet (punkt A) |
 | OL/gifs (339 GIF) | Tilhører OL/meldinger-systemet — fikses med indeksen |
 | EXPO94/gifs (48 GIF) | Vurder å lage en gallerisside |
