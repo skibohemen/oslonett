@@ -32,28 +32,23 @@ Forslagene er rangert etter **samlet nytteverdi** vektet mot **risiko for å for
 
 ---
 
-### 🔴 P1 — Fjern CDN-avhengighet for Lunr.js
+### ✅ P1 — Fjern CDN-avhengighet for Lunr.js
 
 **Kategori:** Pålitelighet / Langsiktig bevaring  
-**Innsats:** Lav (< 1 time)
+**Innsats:** Lav (< 1 time)  
+**Status:** Gjennomført 1. juli 2026
 
 **Problem:**  
-Søkefunksjonen (`search.js`) laster Lunr.js fra en ekstern CDN:
+Tidligere ble søkefunksjonen (`search.js`) avhengig av et eksternt CDN for Lunr.js, noe som gjorde løsningen sårbar ved utilgjengelighet, endrede URL-er eller opphør av tredjeparter.
+
+**Gjennomført:**  
+Vi har lastet ned Lunr.js versjon 2.3.9 og bruker denne lokalt fra `/js/lunr.js`. Sider som bruker søkefunksjonen refererer nå til den lokale filen, slik at nettstedet ikke lenger er avhengig av `unpkg.com` for denne delen av funksjonaliteten.
 
 ```html
-<script src="https://unpkg.com/lunr/lunr.js"></script>
+<script src="/js/lunr.js"></script>
 ```
 
-Dette betyr at søkefunksjonen slutter å virke dersom `unpkg.com` er utilgjengelig, endrer URL-struktur, eller opphører. For et langsiktig arkiv er ekstern avhengighet en risiko.
-
-**Løsning:**  
-Last ned en spesifikk versjon av `lunr.min.js` og legg den i `/js/`-mappen. Oppdater alle script-referanser til å peke lokalt:
-
-```html
-<script src="/js/lunr.min.js"></script>
-```
-
-**Gevinst:** Nettstedet fungerer fullstendig offline/airgapped og er ikke avhengig av tredjeparter.
+**Gevinst:** Nettstedet fungerer fullstendig offline/airgapped for denne delen av søkefunksjonen og er ikke lenger avhengig av eksterne CDN-tjenester.
 
 ---
 
@@ -226,25 +221,17 @@ Ingen av sidene har viewport-metatag. På mobil vises nettstedet svært lite og 
 
 ---
 
-### 🟡 P9 — Erstatt `unpkg.com`-avhengighet i Lunr med lokal kopi og integrity-sjekk
+### ✅ P9 — Erstatt `unpkg.com`-avhengighet i Lunr med lokal kopi og integrity-sjekk
 
 **Kategori:** Sikkerhet / Pålitelighet  
 **Innsats:** Lav  
-**Merk:** Delvis overlapp med P1 — dette er utdyping av sikkerhetsaspektet.
+**Status:** Ferdig / irrelevant som separat tiltak siden P1 nå er løst og Lunr brukes lokalt i versjon 2.3.9.
 
 **Problem:**  
-Dersom Lunr.js lastes fra CDN, bør Subresource Integrity (SRI) brukes for å verifisere at scriptet ikke er manipulert:
+Tidligere var dette et relevant sikkerhets- og pålitelighetsaspekt ved CDN-bruk, men med lokal kopi av Lunr er behovet for SRI på denne avhengigheten ikke lenger aktuelt som separat tiltak.
 
-```html
-<!-- Med SRI (midlertidig til lokal kopi er på plass): -->
-<script 
-  src="https://unpkg.com/lunr/lunr.js" 
-  integrity="sha384-[HASH]" 
-  crossorigin="anonymous">
-</script>
-```
-
-Best: flytt til lokal kopi (se P1).
+**Gjennomført:**  
+Vi bruker nå en lokal kopi av Lunr 2.3.9 fra `/js/lunr.js`, og det er dermed ikke lenger noen aktiv `unpkg.com`-avhengighet å beskytte mot.
 
 ---
 
@@ -396,7 +383,7 @@ Bruk en statisk site-generator (f.eks. **Eleventy/11ty**, Hugo eller Jekyll) med
 
 | Prioritet | ID | Tiltak | Kategori | Innsats |
 |-----------|-----|--------|----------|---------|
-| 🔴 Kritisk | P1 | Fjern CDN-avhengighet for Lunr.js | Pålitelighet | Lav |
+| ✅ Gjennomført | P1 | Fjern CDN-avhengighet for Lunr.js | Pålitelighet | Lav |
 | 🔴 Kritisk | P2 | Fjern debug `console.log` | Kodekvalitet | Svært lav |
 | 🔴 Kritisk | P3 | Legg til Content Security Policy | Sikkerhet | Lav |
 | 🟠 Høy | P4 | Sanitering av søkeresultater mot XSS | Sikkerhet | Lav–middels |
@@ -404,7 +391,7 @@ Bruk en statisk site-generator (f.eks. **Eleventy/11ty**, Hugo eller Jekyll) med
 | ✅ Gjennomført | P6 | Generer `sitemap.xml` og `robots.txt` | Bevaring/SEO | Lav |
 | 🟠 Høy | P7 | Strukturer søkeindeks som byggeprosess | Vedlikehold | Middels |
 | 🟡 Middels | P8 | Legg til `<meta name="viewport">` | Tilgjengelighet | Lav |
-| 🟡 Middels | P9 | SRI-sjekk på CDN-script | Sikkerhet | Lav |
+| ✅ Ferdig | P9 | Lokal Lunr 2.3.9 uten CDN-avhengighet | Sikkerhet | Lav |
 | 🟡 Middels | P10 | Rett `lang`-attributt til norsk | Tilgjengelighet | Lav |
 | 🟡 Middels | P11 | Open Graph-metadata | Synlighet | Lav–middels |
 | 🟡 Middels | P12 | Broken-link-sjekk i CI | Vedlikehold | Lav |
